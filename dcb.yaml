@@ -1,0 +1,81 @@
+services:
+  free5gc-n3iwf:
+    container_name: n3iwf
+    build:
+      context: ./nf_n3iwf
+      args:
+        DEBUG_TOOLS: "true"
+    command: ./n3iwf -c ./config/n3iwfcfg.yaml
+    volumes:
+      - ./config/n3iwfcfg.yaml:/free5gc/config/n3iwfcfg.yaml
+      - ./config/n3iwf-ipsec.sh:/free5gc/n3iwf-ipsec.sh
+      - ./cert/n3iwf.key:/free5gc/cert/n3iwf.key
+      - ./cert/n3iwf.pem:/free5gc/cert/n3iwf.pem
+      - ./n3iwf_e2logger:/free5gc/log/:rw
+      - ./wifi_metrics:/free5gc/wifi_metrics:ro
+
+    environment:
+      GIN_MODE: release
+    cap_add:
+      - NET_ADMIN
+
+    networks:
+      privnet:
+        ipv4_address: 10.100.200.15
+        aliases:
+          - n3iwf.free5gc.org
+      macvlan10:
+        ipv4_address: 192.168.11.254
+    depends_on:
+      - free5gc-amf
+      - free5gc-smf
+      - free5gc-upf
+
+  free5gc-e2node:
+    container_name: e2node
+    build:
+      context: ./e2sim
+    command: ./build/kpm_callbacks -c ./config/e2node.yaml 
+    network_mode: "host"
+    volumes:
+      - ./n3iwf_e2logger:/home/e2sim/log/:rw
+      - ./config/e2node.yaml:/home/e2sim/config/e2node.yaml
+    depends_on:
+      - free5gc-n3iwf
+      - free5gc-upf
+      - free5gc-amf
+      - free5gc-smf
+
+  wifi-metrics-exporter:
+    image: alpine:3.19
+    container_name: wifi-metrics-exporter
+    network_mode: host 
+    pid: host
+    privileged: true              
+    command: sh -lc 'apk add --no-cache python3 py3-pip iw iproute2 ethtool hostapd && python3 /app/exporter.py'
+    volumes:
+      - ./wifi_metrics/exporter.py:/app/exporter.py:ro
+      - ./wifi_metrics:/wifi-metrics:rw 
+      - /run/hostapd:/run/hostapd:rw
+      - /run/hostapd:/var/run/hostapd:rw   
+      - /tmp:/tmp   
+    environment:
+      HOSTAPD_CTRL_PATH: /var/run/hostapd
+      HOSTAPD_IFACES: "wlp6s0"
+      SCRAPE_INTERVAL: "5"
+      OUTPUT_DIR: "/wifi-metrics"
+
+
+networks:
+  privnet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.100.200.0/24
+    driver_opts:
+      com.docker.network.bridge.name: br-free5gc
+  macvlan10:
+    external: true
+
+volumes:
+  dbdata:
