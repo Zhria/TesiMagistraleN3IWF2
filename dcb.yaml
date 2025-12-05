@@ -47,7 +47,6 @@ services:
     privileged: true              
     command: sh -lc 'apk add --no-cache python3 py3-pip iw iproute2 ethtool hostapd && python3 /app/exporter.py'
     volumes:
-      - ./wifi_metrics/exporter.py:/app/exporter.py:ro
       - ./wifi_metrics:/wifi-metrics:rw 
       - /run/hostapd:/run/hostapd:rw
       - /run/hostapd:/var/run/hostapd:rw   
