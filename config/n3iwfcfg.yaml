@@ -30,6 +30,8 @@ configuration:
         - 192.168.17.94
       port: 38412
   nasTcpPort: 20000 # TCP port which the NAS listens on
+  localSctpAddr: 192.168.11.254 
+
 
   # --- Nwu Interfaces ---
   ikeBindAddress: 192.168.11.254 #192.168.10.1 #10.100.200.15 # Nwu interface  IP address (IKE) on this N3IWF
