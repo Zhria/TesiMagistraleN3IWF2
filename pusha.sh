@@ -1,7 +1,7 @@
 #!/bin/bash
 
 COMMIT_MSG="push automatico"
-BUILD_IMAGES=true
+BUILD_IMAGES=false
 
 while [[ $# -gt 0 ]]; do
   case "$1" in

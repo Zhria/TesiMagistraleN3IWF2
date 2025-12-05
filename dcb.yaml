@@ -26,10 +26,6 @@ services:
           - n3iwf.free5gc.org
       macvlan10:
         ipv4_address: 192.168.11.254
-    depends_on:
-      - free5gc-amf
-      - free5gc-smf
-      - free5gc-upf
 
   free5gc-e2node:
     container_name: e2node
@@ -42,9 +38,6 @@ services:
       - ./config/e2node.yaml:/home/e2sim/config/e2node.yaml
     depends_on:
       - free5gc-n3iwf
-      - free5gc-upf
-      - free5gc-amf
-      - free5gc-smf
 
   wifi-metrics-exporter:
     image: alpine:3.19
