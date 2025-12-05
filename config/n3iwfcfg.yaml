@@ -8,7 +8,7 @@ configuration:
       plmnID: # Public Land Mobile Network ID, <PLMN ID> = <MCC><MNC>
         mcc: 208 # Mobile Country Code (3 digits string, digit: 0~9)
         mnc: 93 # Mobile Network Code (2 or 3 digits string, digit: 0~9)
-      n3iwfID: 135 # ID used to identify an N3IWF in PLMN (uinteger, range: 0~65535)
+      n3iwfID: 136 # ID used to identify an N3IWF in PLMN (uinteger, range: 0~65535)
     name: free5GC_N3IWF # The name of this N3IWF
     supportedTAList: # Tracking Area supported by this N3IWF
       - tac: 000001 # Tracking Area Code (3 bytes hex string, range: 000000~FFFFFF)
@@ -27,12 +27,12 @@ configuration:
   # --- N2 Interfaces ---
   amfSCTPAddresses: # the IP list of N2 interfaces (SCTP) on AMF when using NGAP
     - ip:
-        - amf.free5gc.org
+        - 192.168.17.94
       port: 38412
   nasTcpPort: 20000 # TCP port which the NAS listens on
 
   # --- Nwu Interfaces ---
-  ikeBindAddress: 192.168.10.254 #192.168.10.1 #10.100.200.15 # Nwu interface  IP address (IKE) on this N3IWF
+  ikeBindAddress: 192.168.11.254 #192.168.10.1 #10.100.200.15 # Nwu interface  IP address (IKE) on this N3IWF
   ipSecTunnelAddress: 10.0.0.1 # Tunnel IP address of XFRM interface on this N3IWF
   ueIpAddressRange: 10.0.0.0/24 # IP address pool allocated to UE in IPSec tunnel
   xfrmInterfaceName: xfrmi # Prefix of XFRM interface name created by N3IWF
