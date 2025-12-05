@@ -39,7 +39,7 @@ configuration:
   xfrmInterfaceID: 1 # XFRM interface if_id for IPSec routing (Any value except to 0, default value is 7 if not defined)
 
   # --- N3 Interfaces ---
-  n3iwfGtpBindAddress: 10.100.200.15 # IP address of N3 interface (GTP) on this N3IWF
+  n3iwfGtpBindAddress: 192.168.11.254 #10.100.200.15 # IP address of N3 interface (GTP) on this N3IWF
 
   fqdn: n3iwf.free5gc.org # FQDN of this N3IWF
 
