@@ -8,10 +8,12 @@ configuration:
     - 192.168.17.125 # RIC address
   ricPort: 32222 #36422 #36412 # the port of the RIC
   localAddress: # the local address to bind to
-    - 192.168.17.94
+    - 192.168.17.93
   # HTTP endpoint used by the RC callbacks to trigger N3IWF handover.
   # If set, this overrides the built‑in default and the RC code will
   # send POST /rc/handover to this URL.
-  n3iwfHandoverUrl: "http://10.100.200.15:9085/rc/handover"
-  gnbCuUpId: 1 # gNB CU-UP ID to be used in E2AP messages
-  gnbDuId: 1    # gNB DU ID to be used in E2AP messages
+  n3iwfHandoverUrl: "http://192.168.17.94:9085/rc/handover"
+  gnbCuUpId: 2
+   # gNB CU-UP ID to be used in E2AP messages
+  gnbDuId: 2
+   # gNB DU ID to be used in E2AP messages
