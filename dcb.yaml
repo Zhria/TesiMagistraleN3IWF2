@@ -5,8 +5,12 @@ services:
       context: ./nf_n3iwf
       args:
         DEBUG_TOOLS: "true"
-    command: ./n3iwf -c ./config/n3iwfcfg.yaml
+    command: ./start-n3iwf.sh
     volumes:
+      - ./config/n3iwf-ipsec.sh:/free5gc/n3iwf-ipsec.sh
+      - ./config/n3iwf-route.sh:/free5gc/n3iwf-route.sh
+      - ./config/start-n3iwf.sh:/free5gc/start-n3iwf.sh
+
       - ./config/n3iwfcfg.yaml:/free5gc/config/n3iwfcfg.yaml
       - ./config/n3iwf-ipsec.sh:/free5gc/n3iwf-ipsec.sh
       - ./cert/n3iwf.key:/free5gc/cert/n3iwf.key
@@ -47,6 +51,7 @@ services:
     privileged: true              
     command: sh -lc 'apk add --no-cache python3 py3-pip iw iproute2 ethtool hostapd && python3 /app/exporter.py'
     volumes:
+      - ./wifi_metrics/exporter.py:/app/exporter.py:ro
       - ./wifi_metrics:/wifi-metrics:rw 
       - /run/hostapd:/run/hostapd:rw
       - /run/hostapd:/var/run/hostapd:rw   
