@@ -29,7 +29,7 @@ for arg in "$@"; do
 done
 
 sudo ./setup-gtp5g.sh
-sudo git reset --hard origin/main 
+#sudo git reset --hard origin/main 
 git pull
 
 # Se build richiesto
