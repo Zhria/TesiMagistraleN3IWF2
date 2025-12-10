@@ -6,7 +6,7 @@ services:
       args:
         DEBUG_TOOLS: "true"
     command: ./start-n3iwf.sh
-    network_mode: "host"
+    network_mode: host
     volumes:
       - ./config/n3iwfcfg.yaml:/free5gc/config/n3iwfcfg.yaml
       - ./config/n3iwf-ipsec.sh:/free5gc/n3iwf-ipsec.sh
@@ -26,8 +26,8 @@ services:
     container_name: e2node
     build:
       context: ./e2sim
-    command: ./build/kpm_callbacks -c ./config/e2node.yaml 
-    network_mode: "host"
+    command: ./build/kpm_callbacks -c ./config/e2node.yaml
+    network_mode: host
     volumes:
       - ./n3iwf_e2logger:/home/e2sim/log/:rw
       - ./config/e2node.yaml:/home/e2sim/config/e2node.yaml
@@ -37,16 +37,16 @@ services:
   wifi-metrics-exporter:
     image: alpine:3.19
     container_name: wifi-metrics-exporter
-    network_mode: host 
+    network_mode: host
     pid: host
-    privileged: true              
+    privileged: true
     command: sh -lc 'apk add --no-cache python3 py3-pip iw iproute2 ethtool hostapd && python3 /app/exporter.py'
     volumes:
       - ./wifi_metrics/exporter.py:/app/exporter.py:ro
-      - ./wifi_metrics:/wifi-metrics:rw 
+      - ./wifi_metrics:/wifi-metrics:rw
       - /run/hostapd:/run/hostapd:rw
-      - /run/hostapd:/var/run/hostapd:rw   
-      - /tmp:/tmp   
+      - /run/hostapd:/var/run/hostapd:rw
+      - /tmp:/tmp
     environment:
       HOSTAPD_CTRL_PATH: /var/run/hostapd
       HOSTAPD_IFACES: "wlp6s0"
@@ -55,13 +55,13 @@ services:
 
 
 networks:
-  privnet:
-    ipam:
-      driver: default
-      config:
-        - subnet: 10.100.200.0/24
-    driver_opts:
-      com.docker.network.bridge.name: br-free5gc
+  #privnet:
+  #  ipam:
+  #    driver: default
+  #    config:
+  #      - subnet: 10.100.200.0/24
+  #  driver_opts:
+  #    com.docker.network.bridge.name: br-free5gc
   macvlan10:
     external: true
 
