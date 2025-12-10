@@ -43,6 +43,11 @@ configuration:
   # --- N3 Interfaces ---
   n3iwfGtpBindAddress: 192.168.17.93 #10.100.200.15 # IP address of N3 interface (GTP) on this N3IWF
 
+# --- Wi-Fi Access ---
+  wifi:
+    ssid: N3IWF2_TEST # SSID of the Wi-Fi access point
+    password: TestWifiZakHandoverN3IWF2 # Passphrase/PSK for Wi-Fi access
+
   fqdn: n3iwf.free5gc.org # FQDN of this N3IWF
 
   # --- Security ---
