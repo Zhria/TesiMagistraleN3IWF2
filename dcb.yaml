@@ -1,17 +1,12 @@
 services:
   free5gc-n3iwf:
     container_name: n3iwf
-    build:
-      context: ./nf_n3iwf
-      args:
-        DEBUG_TOOLS: "true"
-    command: ./start-n3iwf.sh
+    image: zhria/n3iwfcustom:latest
+    command: ./n3iwf -c ./config/n3iwfcfg.yaml
     network_mode: host
     volumes:
       - ./config/n3iwfcfg.yaml:/free5gc/config/n3iwfcfg.yaml
       - ./config/n3iwf-ipsec.sh:/free5gc/n3iwf-ipsec.sh
-      - ./config/n3iwf-route.sh:/free5gc/n3iwf-route.sh
-      - ./config/start-n3iwf.sh:/free5gc/start-n3iwf.sh
       - ./cert/n3iwf.key:/free5gc/cert/n3iwf.key
       - ./cert/n3iwf.pem:/free5gc/cert/n3iwf.pem
       - ./n3iwf_e2logger:/free5gc/log/:rw
