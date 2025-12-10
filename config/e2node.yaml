@@ -5,7 +5,7 @@ info:
 configuration:
   e2NodeName: E2Node # the name of this E2Node
   ricAddress: # the address of the RIC
-    - 192.168.17.125 # RIC address
+    - 192.168.17.74 #192.168.17.125 # RIC address
   ricPort: 32222 #36422 #36412 # the port of the RIC
   localAddress: # the local address to bind to
     - 192.168.17.93

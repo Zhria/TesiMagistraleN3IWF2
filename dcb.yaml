@@ -2,7 +2,8 @@ services:
   free5gc-n3iwf:
     container_name: n3iwf
     image: zhria/n3iwfcustom:latest
-    command: ./n3iwf -c ./config/n3iwfcfg.yaml
+    command: /free5gc/n3iwf/n3iwf -c /free5gc/config/n3iwfcfg.yaml
+    working_dir: /free5gc
     network_mode: host
     volumes:
       - ./config/n3iwfcfg.yaml:/free5gc/config/n3iwfcfg.yaml
