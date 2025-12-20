@@ -20,8 +20,7 @@ services:
 
   free5gc-e2node:
     container_name: e2node
-    build:
-      context: ./e2sim
+    image: zhria/e2node:latest
     command: ./build/kpm_callbacks -c ./config/e2node.yaml
     network_mode: host
     volumes:
@@ -45,19 +44,12 @@ services:
       - /tmp:/tmp
     environment:
       HOSTAPD_CTRL_PATH: /var/run/hostapd
-      HOSTAPD_IFACES: "wlp6s0"
+      HOSTAPD_IFACES: "wlp44s0"
       SCRAPE_INTERVAL: "5"
       OUTPUT_DIR: "/wifi-metrics"
 
 
 networks:
-  #privnet:
-  #  ipam:
-  #    driver: default
-  #    config:
-  #      - subnet: 10.100.200.0/24
-  #  driver_opts:
-  #    com.docker.network.bridge.name: br-free5gc
   macvlan10:
     external: true
 

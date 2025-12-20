@@ -1,1 +1,21 @@
-
+ethtool_rx_packets{iface="wlp44s0"} 1022 1766247514000
+ethtool_rx_bytes{iface="wlp44s0"} 33798 1766247514000
+ethtool_rx_duplicates{iface="wlp44s0"} 0 1766247514000
+ethtool_rx_fragments{iface="wlp44s0"} 945 1766247514000
+ethtool_rx_dropped{iface="wlp44s0"} 2 1766247514000
+ethtool_tx_packets{iface="wlp44s0"} 36 1766247514000
+ethtool_tx_bytes{iface="wlp44s0"} 4450 1766247514000
+ethtool_tx_filtered{iface="wlp44s0"} 0 1766247514000
+ethtool_tx_retry_failed{iface="wlp44s0"} 0 1766247514000
+ethtool_tx_retries{iface="wlp44s0"} 0 1766247514000
+ethtool_sta_state{iface="wlp44s0"} 0 1766247514000
+ethtool_txrate{iface="wlp44s0"} 0 1766247514000
+ethtool_rxrate{iface="wlp44s0"} 0 1766247514000
+ethtool_signal{iface="wlp44s0"} 0 1766247514000
+ethtool_channel{iface="wlp44s0"} 0 1766247514000
+ethtool_noise{iface="wlp44s0"} 18446744073709551615 1766247514000
+ethtool_ch_time{iface="wlp44s0"} 18446744073709551615 1766247514000
+ethtool_ch_time_busy{iface="wlp44s0"} 18446744073709551615 1766247514000
+ethtool_ch_time_ext_busy{iface="wlp44s0"} 18446744073709551615 1766247514000
+ethtool_ch_time_rx{iface="wlp44s0"} 18446744073709551615 1766247514000
+ethtool_ch_time_tx{iface="wlp44s0"} 18446744073709551615 1766247514000

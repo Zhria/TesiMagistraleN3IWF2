@@ -12,7 +12,7 @@ configuration:
   # HTTP endpoint used by the RC callbacks to trigger N3IWF handover.
   # If set, this overrides the built‑in default and the RC code will
   # send POST /rc/handover to this URL.
-  n3iwfHandoverUrl: "http://192.168.17.94:9085/rc/handover"
+  n3iwfHandoverUrl: "http://192.168.17.93:9085/rc/handover"
   gnbCuUpId: 2
    # gNB CU-UP ID to be used in E2AP messages
   gnbDuId: 2
